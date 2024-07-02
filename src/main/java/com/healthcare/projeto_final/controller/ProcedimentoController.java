@@ -37,8 +37,8 @@ public class ProcedimentoController {
         return ResponseEntity.ok(service.update(id, dto));
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<Void> deletar(@RequestBody Long id){
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         service.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

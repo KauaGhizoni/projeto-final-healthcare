@@ -19,7 +19,7 @@ public class PacienteController {
 
     private final PacienteService service;
 
-    @PostMapping("/cadastro")
+    @PostMapping("/salvar")
     public ResponseEntity<Paciente> cadastrar(@RequestBody PacienteDto dto){
         return ResponseEntity.ok(service.save(dto));
     }
@@ -39,8 +39,8 @@ public class PacienteController {
         return ResponseEntity.ok(service.update(id, dto));
     }
 
-    @DeleteMapping("/deletar")
-    public ResponseEntity<Void> deletar(@RequestBody Long id){
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
         service.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
