@@ -4,7 +4,7 @@ import com.healthcare.projeto_final.entity.Paciente;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CPF;
 
-public record PacienteDto(
+public record   PacienteDto(
 
         @NotBlank(message = "Nome obrigatorio")
         String nome,

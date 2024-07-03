@@ -1,5 +1,6 @@
 package com.healthcare.projeto_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Agendamento extends BaseEntity{
     private LocalDateTime dataHora;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 

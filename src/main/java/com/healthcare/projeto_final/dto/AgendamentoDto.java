@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 
 public record AgendamentoDto(
         String motivo,
-        LocalDateTime dataHora
-
-        //PacienteDto paciente;
+        LocalDateTime dataHora,
+        Long idPaciente
 ) {
 }
