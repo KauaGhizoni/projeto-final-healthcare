@@ -45,6 +45,4 @@ public class PacienteController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-
 }
-
