@@ -1,5 +1,6 @@
 package com.healthcare.projeto_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,6 +17,7 @@ public class Agendamento extends BaseEntity{
 
     private String motivo;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataHora;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
