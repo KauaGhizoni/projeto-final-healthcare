@@ -14,8 +14,6 @@ import java.util.List;
 @Entity
 public class Prescricoes extends BaseEntity{
 
-    private String nome;
-
     private LocalDateTime data;
 
     private String nomeMedico;

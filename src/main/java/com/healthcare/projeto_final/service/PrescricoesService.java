@@ -1,10 +1,7 @@
 package com.healthcare.projeto_final.service;
 
-import com.healthcare.projeto_final.dto.AgendamentoDto;
 import com.healthcare.projeto_final.dto.PrescricoesDto;
-import com.healthcare.projeto_final.entity.Agendamento;
 import com.healthcare.projeto_final.entity.Prescricoes;
-import com.healthcare.projeto_final.repository.AgendamentoRepository;
 import com.healthcare.projeto_final.repository.PacienteRepository;
 import com.healthcare.projeto_final.repository.PrescricoesRepository;
 import com.healthcare.projeto_final.service.interfaces.AbstractService;
@@ -19,10 +16,13 @@ import java.util.List;
 public class PrescricoesService implements AbstractService<Prescricoes, PrescricoesDto> {
 
     private final PrescricoesRepository repository;
+    private final PacienteRepository pacienteRepository;
+
     @Override
     public Prescricoes save(PrescricoesDto entity) {
+        var paciente = pacienteRepository.findById(entity.idPaciente()).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado"));
         return repository.save(Prescricoes.builder()
-                .nome(entity.nome())
+                .paciente(paciente)
                 .data(entity.data())
                 .nomeMedico(entity.nomeMedico())
                 .build());
@@ -40,8 +40,9 @@ public class PrescricoesService implements AbstractService<Prescricoes, Prescric
 
     @Override
     public Prescricoes update(Long id, PrescricoesDto entity) {
+        var paciente = pacienteRepository.findById(entity.idPaciente()).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado"));
         return repository.save(Prescricoes.builder()
-                .nome(entity.nome())
+                .paciente(paciente)
                 .data(entity.data())
                 .nomeMedico(entity.nomeMedico())
                 .build());

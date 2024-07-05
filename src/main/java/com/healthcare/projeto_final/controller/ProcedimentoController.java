@@ -40,7 +40,7 @@ public class ProcedimentoController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         service.deleteById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.ok().build();
     }
 
 }

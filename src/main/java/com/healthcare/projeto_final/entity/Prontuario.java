@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 public class Prontuario extends BaseEntity {
+
+    private List<String> registros;
 
     private String evolucaoMedica;
 

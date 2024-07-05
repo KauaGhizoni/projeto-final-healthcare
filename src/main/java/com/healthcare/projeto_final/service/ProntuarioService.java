@@ -22,6 +22,7 @@ public class ProntuarioService implements AbstractService<Prontuario, Prontuario
     public Prontuario save(ProntuarioDto entity) {
         var paciente = pacienteRepository.findById(entity.idPaciente()).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado"));
         return repository.save(Prontuario.builder()
+                .registros(entity.regristros())
                 .convenio(entity.convenio())
                 .dataEntrada(entity.dataEntrada())
                 .dataAlta(entity.dataAlta())
