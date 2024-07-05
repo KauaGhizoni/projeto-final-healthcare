@@ -1,5 +1,6 @@
 package com.healthcare.projeto_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -23,9 +24,11 @@ public class Medicamento extends BaseEntity{
 
     private Double preco;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "medicamentos")
     private List<Faturamento> faturamento;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "medicamentos")
     private List<Prescricoes> prescricoes;
 
