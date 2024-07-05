@@ -22,7 +22,7 @@ public class AgendamentoService implements AbstractService<Agendamento, Agendame
     public Agendamento save(AgendamentoDto entity) {
         var paciente = pacienteRepository.findById(entity.idPaciente()).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado"));
         if (repository.verificaDisponibilidadeDataHora(entity.dataHora())) {
-            throw new RuntimeException("Agendamento indisponível");
+            throw new EntityNotFoundException("Agendamento indisponível");
         }
         return repository.save(Agendamento.builder()
                 .motivo(entity.motivo())

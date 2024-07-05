@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 public class Faturamento extends BaseEntity{
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 

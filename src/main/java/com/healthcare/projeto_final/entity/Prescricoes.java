@@ -1,5 +1,7 @@
 package com.healthcare.projeto_final.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Entity
 public class Prescricoes extends BaseEntity{
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime data;
 
     private String nomeMedico;
@@ -26,7 +29,7 @@ public class Prescricoes extends BaseEntity{
     )
     private List<Medicamento> medicamentos;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
