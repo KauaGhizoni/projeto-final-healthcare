@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -53,9 +54,13 @@ public class FaturamentoService implements AbstractService<Faturamento, Faturame
     }
 
     private Double calculaValorTotal(FaturamentoDto dto) {
-        var valorMedicamento = medicamentoRepository.findSumOfMedicamentoPrecosByIds(dto.medicamentoIds());
-        var valorProcedimento = procedimentoRepository.findSumOfProcedimentoPrecosByIds(dto.procedimentoIds());
-        var valorMaterial = materialRepository.findSumOfMaterialPrecosByIds(dto.materialIds());
-        return valorMaterial + valorMedicamento + valorProcedimento;
+        return calculaValorPorIds(dto.medicamentoIds(), medicamentoRepository::findSumOfMedicamentoPrecosByIds) +
+                calculaValorPorIds(dto.procedimentoIds(), procedimentoRepository::findSumOfProcedimentoPrecosByIds) +
+                calculaValorPorIds(dto.materialIds(), materialRepository::findSumOfMaterialPrecosByIds);
+    }
+
+    private Double calculaValorPorIds(List<Long> ids, Function<List<Long>, Double> valorFinder) {
+        Double valor = valorFinder.apply(ids);
+        return valor != null ? valor : 0.0;
     }
 }

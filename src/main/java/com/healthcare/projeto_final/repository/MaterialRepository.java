@@ -12,8 +12,8 @@ import java.util.List;
 public interface MaterialRepository extends JpaRepository<Material,Long> {
 
     @Query("select sum(m.preco) from Material m where m.id in :ids")
-    Double findSumOfMaterialPrecosByIds(@Param("ids") List<Integer> ids);
+    Double findSumOfMaterialPrecosByIds(@Param("ids") List<Long> ids);
 
     @Query("select m from Material m where m.id in :ids")
-    List<Material> findMaterias(@Param("ids") List<Integer> ids);
+    List<Material> findMaterias(@Param("ids") List<Long> ids);
 }

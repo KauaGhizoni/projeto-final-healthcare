@@ -13,9 +13,9 @@ import java.util.List;
 public interface MedicamentoRepository extends JpaRepository<Medicamento,Long> {
 
     @Query("select sum(m.preco) from Medicamento m where m.id in :ids")
-    Double findSumOfMedicamentoPrecosByIds(@Param("ids") List<Integer> ids);
+    Double findSumOfMedicamentoPrecosByIds(@Param("ids") List<Long> ids);
 
     @Query("select m from Medicamento m where m.id in :ids")
-    List<Medicamento> findMedicamentos(@Param("ids") List<Integer> ids);
+    List<Medicamento> findMedicamentos(@Param("ids") List<Long> ids);
 
 }

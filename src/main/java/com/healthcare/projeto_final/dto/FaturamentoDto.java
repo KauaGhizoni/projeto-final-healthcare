@@ -6,11 +6,11 @@ import java.util.List;
 
 public record FaturamentoDto(
         @NotBlank(message = "Procedimento obrigatorio")
-        List<Integer> procedimentoIds,
+        List<Long> procedimentoIds,
         @NotBlank(message = "Material obrigatorio")
-        List<Integer> materialIds,
+        List<Long> materialIds,
         @NotBlank(message = "Medicamento obrigatorio")
-        List<Integer> medicamentoIds,
+        List<Long> medicamentoIds,
         Double valorTotal
 ) {
 }

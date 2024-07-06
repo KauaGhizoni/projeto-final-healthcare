@@ -13,9 +13,9 @@ import java.util.List;
 public interface ProcedimentoRepository extends JpaRepository<Procedimento, Long> {
 
     @Query("select sum(m.valor) from Procedimento m where m.id in :ids")
-    Double findSumOfProcedimentoPrecosByIds(@Param("ids") List<Integer> ids);
+    Double findSumOfProcedimentoPrecosByIds(@Param("ids") List<Long> ids);
 
     @Query("select p from Procedimento p where p.id in :ids")
-    List<Procedimento> findProcedimentos(@Param("ids") List<Integer> ids);
+    List<Procedimento> findProcedimentos(@Param("ids") List<Long> ids);
 
 }
