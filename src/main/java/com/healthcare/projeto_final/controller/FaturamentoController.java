@@ -17,7 +17,7 @@ public class FaturamentoController {
     private final FaturamentoService service;
 
     @PostMapping("/salvar")
-    public ResponseEntity<Faturamento> save(FaturamentoDto dto) {
+    public ResponseEntity<Faturamento> save(@RequestBody FaturamentoDto dto) {
         return ResponseEntity.ok(service.save(dto));
     }
 

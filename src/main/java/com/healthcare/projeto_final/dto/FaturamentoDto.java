@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 public record FaturamentoDto(
+        @NotBlank(message = "Paciente obrigatorio")
+        Long idPaciente,
         @NotBlank(message = "Procedimento obrigatorio")
         List<Long> procedimentoIds,
         @NotBlank(message = "Material obrigatorio")

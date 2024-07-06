@@ -23,6 +23,7 @@ public class MaterialService implements AbstractService<Material, MaterialDto> {
                 .nome(dto.nome())
                 .descricao(dto.descricao())
                 .quantidade(dto.quantidade())
+                .preco(dto.preco())
                 .build());
     }
 

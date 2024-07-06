@@ -2,10 +2,7 @@ package com.healthcare.projeto_final.service;
 
 import com.healthcare.projeto_final.dto.FaturamentoDto;
 import com.healthcare.projeto_final.entity.Faturamento;
-import com.healthcare.projeto_final.repository.FaturamentoRepository;
-import com.healthcare.projeto_final.repository.MaterialRepository;
-import com.healthcare.projeto_final.repository.MedicamentoRepository;
-import com.healthcare.projeto_final.repository.ProcedimentoRepository;
+import com.healthcare.projeto_final.repository.*;
 import com.healthcare.projeto_final.service.interfaces.AbstractService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +19,13 @@ public class FaturamentoService implements AbstractService<Faturamento, Faturame
     private final MedicamentoRepository medicamentoRepository;
     private final ProcedimentoRepository procedimentoRepository;
     private final MaterialRepository materialRepository;
+    private final PacienteRepository pacienteRepository;
 
     @Override
     public Faturamento save(FaturamentoDto entity) {
+        var paciente = pacienteRepository.findById(entity.idPaciente()).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado"));
         return repository.save(Faturamento.builder()
+                .paciente(paciente)
                 .materiais(materialRepository.findMaterias(entity.materialIds()))
                 .procedimentos(procedimentoRepository.findProcedimentos(entity.procedimentoIds()))
                 .medicamentos(medicamentoRepository.findMedicamentos(entity.medicamentoIds()))
